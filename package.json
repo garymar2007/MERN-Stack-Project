@@ -1,0 +1,30 @@
+{
+  "name": "e-dashboard",
+  "version": "1.0.0",
+  "description": "MERN stack for e-commerce dashboard",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/garymar2007/MERN-Stack-Project.git"
+  },
+  "keywords": [
+    "MongoDB",
+    "React",
+    "Express",
+    "Node.js"
+  ],
+  "author": "Gary Ma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/garymar2007/MERN-Stack-Project/issues"
+  },
+  "homepage": "https://github.com/garymar2007/MERN-Stack-Project#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongoose": "^8.4.1",
+    "nodemon": "^3.1.2"
+  }
+}
