@@ -4,6 +4,7 @@
   "description": "MERN stack for e-commerce dashboard",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,6 +24,7 @@
   },
   "homepage": "https://github.com/garymar2007/MERN-Stack-Project#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.19.2",
     "mongoose": "^8.4.1",
     "nodemon": "^3.1.2"
