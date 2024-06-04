@@ -22,8 +22,8 @@ const SignUp = () => {
                 'Content-Type': 'application/json'
             }
         });
-        //data = await data.json();
-        //console.warn(data);
+        data = await data.json();
+        console.warn(data);
         localStorage.setItem("user", JSON.stringify(data));
         navigate('/');
     }
