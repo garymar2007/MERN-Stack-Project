@@ -13,3 +13,7 @@
 5. npm start    (frontend)
 6. install routing: npm i react-router-dom
 
+### Install MongoDB locally
+1. download mongodb communicty version
+2. download mangodb compass (admin tool)
+
