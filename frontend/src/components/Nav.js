@@ -10,19 +10,27 @@ const Nav = () => {
     }
     return(
         <div>
-            <ul className="nav-ul">
+            <img 
+            alt='logo'
+            className="logo"
+            src="https://neilpatel.com/wp-content/uploads/2021/03/source-code_featured-image.png" />
+            {
+                auth ?
+                <ul className="nav-ul">          
                 <li><Link to="/">Products</Link></li>
                 <li><Link to="/add">Add Products</Link></li>
                 <li><Link to="/update">Update Products</Link></li>
                 <li><Link to="/profile">Profile</Link></li>
-                {
-                    auth ? <li><Link onClick={logout} to="/signup">Logout</Link></li> :
-                    <>
-                        <li><Link to="/signup">Sign up</Link></li>
-                        <li><Link to="/login">Login</Link></li>
-                    </>
-                }
-            </ul>
+                <li><Link onClick={logout} to="/login">Logout ({JSON.parse(auth).name} - {JSON.parse(auth).email})</Link></li>
+                </ul>
+                :
+                <ul className="nav-ul nav-right">          
+                    <li><Link to="/signup">Sign up</Link></li>
+                    <li><Link to="/login">Login</Link></li>           
+                </ul>
+                
+            }
+            
         </div>
     )
 }

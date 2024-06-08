@@ -84,3 +84,16 @@
     transform: rotate(360deg);
   }
 }
+
+.nav-right{
+  text-align:right;
+}
+
+.logo{
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  float: left;
+  margin: 3px;
+  margin-left: 10px;
+}
