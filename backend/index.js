@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 require('./db/config');
 const User = require('./db/User');
+const Product = require('./db/Product');
 const app = express();
 
 // middleware to get json body from request
@@ -31,6 +32,14 @@ app.post('/login', async (req, res) => {
     }
     
     
+})
+
+app.post("/add-product", async (req, res) => {
+    let product = new Product(req.body);
+    let result = await product.save();
+    result = result.toObject();
+    
+    res.send(result);
 })
 
 app.listen(5000);
