@@ -120,3 +120,11 @@
   border: 1px solid skyblue;
   padding: 5px
 }
+
+.search-product-box {
+  width: 400px;
+  margin: 20px;
+  height: 40px;
+  padding-left: 30px;
+  border: solid 1px skyblue;
+}
