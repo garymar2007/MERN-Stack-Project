@@ -34,7 +34,7 @@ app.post('/login', async (req, res) => {
         if (user) {
             Jwt.sign({user}, jwtKey, {expiresIn:"2h"}, (err, token) => {
                 if (err) {
-                    res.send({"result": "Somethng went wrong, please retry after sometime."});
+                    res.send({"result": "Something went wrong, please retry after sometime."});
                 }
                 res.send({user, auth: token});
             });
@@ -49,7 +49,7 @@ app.post('/login', async (req, res) => {
     
 })
 
-app.post("/add-product", async (req, res) => {
+app.post("/add-product", verifyToken, async (req, res) => {
     let product = new Product(req.body);
     let result = await product.save();
     result = result.toObject();
@@ -57,7 +57,7 @@ app.post("/add-product", async (req, res) => {
     res.send(result);
 })
 
-app.get("/products", async (req, res) => {
+app.get("/products", verifyToken, async (req, res) => {
     const products = await Product.find();
     if (products.length > 0) {
         res.send(products);
@@ -66,13 +66,13 @@ app.get("/products", async (req, res) => {
     }
 })
 
-app.delete("/product/:id", async (req, res) => {
+app.delete("/product/:id", verifyToken, async (req, res) => {
     console.log(req.params.id);
     let result = await Product.deleteOne({ _id: req.params.id });
     res.send(result);
 })
 
-app.get("/product/:id", async (req, res) => {
+app.get("/product/:id", verifyToken, async (req, res) => {
     let result = await Product.findOne({ _id: req.params.id });
     if (result) {
         res.send(result);
@@ -82,7 +82,7 @@ app.get("/product/:id", async (req, res) => {
    
 })
 
-app.put("/product/:id/update-product", async (req, res) => {
+app.put("/product/:id/update-product", verifyToken, async (req, res) => {
     let result = await Product.updateOne(
         {_id: req.params.id},
         {$set:req.body}
@@ -90,7 +90,7 @@ app.put("/product/:id/update-product", async (req, res) => {
     res.send(result);
 })
 
-app.get("/search/:key", async (req, res) => {
+app.get("/search/:key", verifyToken, async (req, res) => {
     let result  = await Product.find({
         "$or": [
             {
@@ -109,5 +109,23 @@ app.get("/search/:key", async (req, res) => {
     });
     res.send(result);
 })
+
+function verifyToken(req, res, next) {
+    const token = req.headers['authorization'];
+    if (token) {
+        const bearer = token.split(' ');
+        const bearerToken = bearer[1];
+        req.token = bearerToken;
+        console.warn(req.token);
+        Jwt.verify(req.token, jwtKey, (err, valid) => {
+            if (err) {
+                res.status(403).send({result: 'Please provide a valid token'});
+            }
+        });
+        next();
+    } else {
+        res.status(403).send({result: 'Please provide a token'});
+    }
+}
 
 app.listen(5000);
