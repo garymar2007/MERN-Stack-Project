@@ -56,20 +56,24 @@ const ProductList = () => {
             </ul>
             
             {
-                products.filter((item) => item.userId == JSON.parse(localStorage.getItem('user'))._id)
-                .map((item, index) =>
-                    <ul key={item._id}>
-                        <li>{index + 1}</li>
-                        <li>{item.name}</li>
-                        <li>{item.price}</li>
-                        <li>{item.category}</li>
-                        <li>{item.company}</li>
-                        <li>
-                            <button className="deleteButton" onClick={()=>deleteProduct(item._id)}>Delete</button>
-                            <Link to={"/update/" + item._id}>Update</Link>
-                        </li>
-                    </ul>                
-                )
+                products.length > 0 ?
+                
+                    products.filter((item) => item.userId == JSON.parse(localStorage.getItem('user'))._id)
+                    .map((item, index) =>
+                        <ul key={item._id}>
+                            <li>{index + 1}</li>
+                            <li>{item.name}</li>
+                            <li>{item.price}</li>
+                            <li>{item.category}</li>
+                            <li>{item.company}</li>
+                            <li>
+                                <button className="deleteButton" onClick={()=>deleteProduct(item._id)}>Delete</button>
+                                <Link to={"/update/" + item._id}>Update</Link>
+                            </li>
+                        </ul>                
+                    )
+                :
+                <h1> No Result found</h1>
             }
         </div>
     )
