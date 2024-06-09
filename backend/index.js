@@ -38,15 +38,12 @@ app.post('/login', async (req, res) => {
                 }
                 res.send({user, auth: token});
             });
-            
         } else {
             res.send({"result": "No user found"});
         }
     } else {
         res.send({"result": "Incorrect Username or Password"});
     }
-    
-    
 })
 
 app.post("/add-product", verifyToken, async (req, res) => {
